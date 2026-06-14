@@ -1,0 +1,114 @@
+baseURL: "https://powerfulhang.github.io/"
+languageCode: zh-cn
+defaultContentLanguage: zh
+title: "SiliconBlog — 半导体 CAD 工程师的技术笔记"
+theme: PaperMod
+paginate: 8
+
+params:
+  env: production
+  defaultTheme: dark
+  ShowReadingTime: true
+  ShowShareButtons: true
+  ShowPostNavLinks: true
+  ShowBreadCrumbs: true
+  ShowCodeCopyButtons: true
+  ShowWordCount: true
+  ShowRssButtonInSectionTermList: true
+  UseHugoToc: true
+  disableSpecial1stPost: false
+  hidemeta: false
+  showtoc: true
+  tocopen: false
+  comments: false
+  description: "SiliconBlog — 面向半导体 CAD 工程师的技术博客，分享 EDA、SKILL 编程、PDK 开发、DRC/LVS 等实战经验"
+  images:
+    - "/og-image.png"
+
+  label:
+    icon: ""
+    text: SiliconBlog
+
+  logo:
+    icon: "/logo-icon.svg"
+    text: SiliconBlog
+    width: 512
+    height: 512
+
+  homeInfoParams:
+    Title: "欢迎来到 SiliconBlog"
+    Content: >
+      面向半导体 CAD 工程师的技术博客。
+      分享 EDA 工具、PDK 开发、DRC/LVS、Pcell 编程、
+      自动化脚本等实战经验。
+
+  socialIcons:
+    - name: github
+      url: "https://github.com/powerfulhang"
+    - name: email
+      url: "mailto:YOUR_EMAIL"
+
+  assets:
+    favicon: "/favicon.ico"
+    favicon16x16: "/favicon-16x16.png"
+    favicon32x32: "/favicon-32x32.png"
+    apple_touch_icon: "/apple-touch-icon.png"
+
+  fuseOpts:
+    isCaseSensitive: false
+    shouldSort: true
+    location: 0
+    distance: 1000
+    threshold: 0.4
+    minMatchCharLength: 0
+    keys: ["title", "permalink", "summary", "content"]
+
+menu:
+  main:
+    - identifier: posts
+      name: 文章
+      url: /posts/
+      weight: 10
+    - identifier: categories
+      name: 分类
+      url: /categories/
+      weight: 20
+    - identifier: tags
+      name: 标签
+      url: /tags/
+      weight: 30
+    - identifier: archives
+      name: 归档
+      url: /archives/
+      weight: 40
+    - identifier: search
+      name: 搜索
+      url: /search/
+      weight: 50
+    - identifier: about
+      name: 关于
+      url: /about/
+      weight: 60
+
+outputs:
+  home:
+    - HTML
+    - RSS
+    - JSON
+
+enableRobotsTXT: true
+
+sitemap:
+  changefreq: weekly
+  filename: sitemap.xml
+  priority: 0.5
+
+markup:
+  highlight:
+    codeFences: true
+    guessSyntax: true
+    lineNos: true
+    style: dracula
+  goldmark:
+    renderer:
+      unsafe: true

@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 40" width="100%" height="100%">
+  <defs>
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="1.5" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+  </defs>
+
+  <!-- 左侧 IC/代码 复合图标 -->
+  <g transform="translate(4, 4)">
+    <!-- 芯片封装外框 -->
+    <rect x="6" y="6" width="20" height="20" rx="3" fill="#0a0e17" stroke="#00ff88" stroke-width="1.5" filter="url(#glow)"/>
+    
+    <!-- IC 引脚 -->
+    <path d="M 10 6 V 3 M 13 6 V 3 M 16 6 V 3 M 19 6 V 3 M 22 6 V 3" stroke="#00ff88" stroke-width="1" stroke-linecap="round"/>
+    <path d="M 10 26 V 29 M 13 26 V 29 M 16 26 V 29 M 19 26 V 29 M 22 26 V 29" stroke="#00ff88" stroke-width="1" stroke-linecap="round"/>
+    <path d="M 6 10 H 3 M 6 13 H 3 M 6 16 H 3 M 6 19 H 3 M 6 22 H 3" stroke="#00ff88" stroke-width="1" stroke-linecap="round"/>
+    <path d="M 26 10 H 29 M 26 13 H 29 M 26 16 H 29 M 26 19 H 29 M 26 22 H 29" stroke="#00ff88" stroke-width="1" stroke-linecap="round"/>
+    
+    <!-- 中间代码符号 </> -->
+    <path d="M 12 12 L 9 16 L 12 20 M 20 12 L 23 16 L 20 20 M 17 10 L 14 22" stroke="#00d4ff" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+
+  <!-- 底部走线连接 -->
+  <path d="M 40 28 H 52 L 58 22 H 295" fill="none" stroke="#00ff88" stroke-width="1" stroke-dasharray="2,3" opacity="0.5"/>
+  <circle cx="295" cy="22" r="1.5" fill="#00d4ff" opacity="0.8"/>
+  <circle cx="40" cy="28" r="1.5" fill="#00ff88" opacity="0.8"/>
+
+  <!-- 博客名称文字 -->
+  <text x="46" y="27" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="22" font-weight="800" letter-spacing="1.2">
+    <tspan fill="#f3f4f6">Silicon</tspan><tspan fill="#00d4ff">Blog</tspan>
+  </text>
+</svg>

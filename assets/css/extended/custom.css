@@ -1,0 +1,274 @@
+/* =========================================
+   SiliconBlog - 半导体工程师专属科技风主题
+   基于 Hugo PaperMod 扩展
+========================================= */
+
+/* --- 1. 核心色彩变量定义 --- */
+:root {
+    /* 亮色模式 (日间适合阅读的科技感) */
+    --si-bg: #f8fafc;
+    --si-card-bg: #ffffff;
+    --si-primary: #059669;    /* 主绿-加深以提高可读性 */
+    --si-secondary: #0284c7;  /* 次蓝-加深 */
+    --si-tertiary: #9333ea;   /* 硅晶紫-加深 */
+    --si-text: #334155;
+    --si-border: #e2e8f0;
+    --si-code-bg: #f1f5f9;
+    --si-grid-color: rgba(5, 150, 105, 0.04);
+    --si-glow-primary: rgba(5, 150, 105, 0.2);
+
+    /* 覆盖 PaperMod 基础变量 */
+    --theme: var(--si-bg);
+    --entry: var(--si-card-bg);
+    --primary: var(--si-text);
+    --secondary: #64748b;
+    --tertiary: var(--si-border);
+    --content: var(--si-text);
+    --hljs-bg: var(--si-code-bg);
+    --code-bg: var(--si-code-bg);
+    --border: var(--si-border);
+}
+
+.dark {
+    /* 深色模式 (默认深空黑) */
+    --si-bg: #0a0e17;
+    --si-card-bg: #111827;
+    --si-primary: #00ff88;    /* 电路板绿 */
+    --si-secondary: #00d4ff;  /* 芯片蓝 */
+    --si-tertiary: #a855f7;   /* 硅晶紫 */
+    --si-text: #d1d5db;
+    --si-border: #1e293b;
+    --si-code-bg: #0d1117;
+    --si-grid-color: rgba(0, 255, 136, 0.03);
+    --si-glow-primary: rgba(0, 255, 136, 0.15);
+
+    /* 覆盖 PaperMod 基础变量 */
+    --theme: var(--si-bg);
+    --entry: var(--si-card-bg);
+    --primary: var(--si-text);
+    --secondary: #9ca3af;
+    --tertiary: var(--si-border);
+    --content: var(--si-text);
+    --hljs-bg: var(--si-code-bg);
+    --code-bg: var(--si-code-bg);
+    --border: var(--si-border);
+}
+
+/* --- 2. 背景装饰 (电路板网格) --- */
+body {
+    background-color: var(--theme);
+    background-image: 
+        linear-gradient(var(--si-grid-color) 1px, transparent 1px),
+        linear-gradient(90deg, var(--si-grid-color) 1px, transparent 1px);
+    background-size: 40px 40px;
+    background-attachment: fixed;
+    transition: background-color 0.3s ease;
+}
+
+/* 移动端网格缩小 */
+@media (max-width: 768px) {
+    body {
+        background-size: 20px 20px;
+    }
+}
+
+/* --- 3. 全局高亮与滚动条 --- */
+::selection {
+    background: rgba(0, 255, 136, 0.2);
+    color: inherit;
+}
+
+::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+::-webkit-scrollbar-track {
+    background: var(--theme);
+}
+::-webkit-scrollbar-thumb {
+    background: var(--si-primary);
+    border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: var(--si-secondary);
+}
+
+/* --- 4. 导航栏 (毛玻璃效果) --- */
+.header {
+    background: rgba(var(--theme), 0.7) !important;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+}
+
+.logo a {
+    color: var(--si-primary) !important;
+    font-weight: 700;
+    text-shadow: 0 0 10px var(--si-glow-primary);
+    transition: text-shadow 0.3s ease;
+}
+
+.logo a:hover {
+    text-shadow: 0 0 20px var(--si-primary);
+}
+
+/* --- 5. 标题与链接 --- */
+h2 { color: var(--si-primary) !important; }
+h3 { color: var(--si-secondary) !important; }
+h4, h5, h6 { color: var(--si-text) !important; }
+
+a {
+    transition: color 0.2s ease;
+}
+.post-content a {
+    color: var(--si-secondary);
+    text-decoration: none;
+    border-bottom: 1px dashed var(--si-secondary);
+}
+.post-content a:hover {
+    color: var(--si-primary);
+    border-bottom-color: var(--si-primary);
+    text-shadow: 0 0 8px var(--si-glow-primary);
+}
+
+/* --- 6. 文章卡片 (Hover 动画) --- */
+.post-entry {
+    background: var(--entry);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+/* 顶部彩条 */
+.post-entry::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(90deg, var(--si-primary), var(--si-secondary), var(--si-tertiary));
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.post-entry:hover {
+    transform: translateY(-4px);
+    border-color: var(--si-primary);
+    box-shadow: 0 8px 24px var(--si-glow-primary);
+}
+
+.post-entry:hover::before {
+    opacity: 1;
+}
+
+/* --- 7. 代码区块 (CAD 工程师核心区) --- */
+.highlight pre, pre {
+    font-family: 'JetBrains Mono', 'Courier New', Courier, monospace !important;
+    background: var(--si-code-bg) !important;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    position: relative;
+    padding-left: 1.5em !important;
+}
+
+/* 代码块左侧渐变边框 */
+.highlight pre::before, pre::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 3px;
+    background: linear-gradient(to bottom, var(--si-primary), var(--si-secondary));
+    border-top-left-radius: 6px;
+    border-bottom-left-radius: 6px;
+}
+
+code {
+    font-family: 'JetBrains Mono', monospace !important;
+}
+
+/* 行内代码 */
+.post-content :not(pre) > code {
+    color: var(--si-primary);
+    background: rgba(0, 255, 136, 0.1) !important;
+    padding: 0.2em 0.4em;
+    border-radius: 4px;
+    font-size: 0.9em;
+    word-break: break-word;
+}
+/* 亮色模式下的行内代码底色调整 */
+:root:not(.dark) .post-content :not(pre) > code {
+    background: rgba(5, 150, 105, 0.1) !important;
+}
+
+/* --- 8. 标签 Tags (胶囊设计) --- */
+.post-tags a {
+    background: rgba(168, 85, 247, 0.1) !important;
+    color: var(--si-tertiary) !important;
+    border: 1px solid rgba(168, 85, 247, 0.2);
+    border-radius: 20px;
+    padding: 4px 14px;
+    font-size: 0.85em;
+    transition: all 0.2s ease;
+}
+
+.post-tags a:hover {
+    background: var(--si-tertiary) !important;
+    color: #ffffff !important;
+    box-shadow: 0 0 12px rgba(168, 85, 247, 0.4);
+    border-color: var(--si-tertiary);
+}
+
+/* --- 9. 目录 TOC --- */
+.toc {
+    background: var(--entry);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 16px;
+}
+
+.toc summary:hover {
+    color: var(--si-primary);
+}
+
+.toc a:hover {
+    color: var(--si-primary);
+    text-shadow: 0 0 5px var(--si-glow-primary);
+}
+
+/* --- 10. 搜索框 --- */
+#searchInput {
+    background: var(--entry);
+    border: 1px solid var(--border);
+    color: var(--content);
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+#searchInput:focus {
+    border-color: var(--si-primary);
+    box-shadow: 0 0 12px var(--si-glow-primary);
+    outline: none;
+}
+
+/* --- 11. 页脚专属标语样式 --- */
+.silicon-slogan {
+    margin-top: 15px;
+    font-size: 0.85rem;
+    color: var(--si-secondary);
+    font-family: 'JetBrains Mono', monospace;
+    text-align: center;
+    opacity: 0.8;
+}
+
+.silicon-slogan::before, .silicon-slogan::after {
+    content: '</>';
+    color: var(--si-primary);
+    margin: 0 8px;
+    opacity: 0.6;
+}

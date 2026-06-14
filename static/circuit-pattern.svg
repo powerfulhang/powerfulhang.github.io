@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <!-- 透明度控制在 0.05 极淡，保障正文阅读 -->
+  <g opacity="0.05" stroke="#00ff88" stroke-width="1.5" fill="none">
+    
+    <!-- 基础平铺走线 (边缘完全对称连接) -->
+    <path d="M 0 50 H 30 L 50 70 H 150 L 170 50 H 200" />
+    <path d="M 0 150 H 30 L 50 130 H 150 L 170 150 H 200" />
+    <path d="M 50 0 V 30 L 70 50 H 130 L 150 30 V 0" />
+    <path d="M 50 200 V 170 L 70 150 H 130 L 150 170 V 200" />
+    
+    <!-- 装饰性内部走线 -->
+    <path d="M 100 70 V 130" />
+    <path d="M 70 100 H 130" />
+    <path d="M 25 50 V 70 L 40 85 V 115 L 25 130 V 150" />
+    <path d="M 175 50 V 70 L 160 85 V 115 L 175 130 V 150" />
+    <path d="M 50 25 H 70 L 85 40 H 115 L 130 25 H 150" />
+    <path d="M 50 175 H 70 L 85 160 H 115 L 130 175 H 150" />
+
+    <!-- 过孔 (Vias) -->
+    <g fill="#0a0e17">
+      <circle cx="50" cy="70" r="3" />
+      <circle cx="150" cy="70" r="3" />
+      <circle cx="50" cy="130" r="3" />
+      <circle cx="150" cy="130" r="3" />
+      <circle cx="70" cy="50" r="3" />
+      <circle cx="130" cy="50" r="3" />
+      <circle cx="70" cy="150" r="3" />
+      <circle cx="130" cy="150" r="3" />
+      <circle cx="100" cy="70" r="3" />
+      <circle cx="100" cy="130" r="3" />
+      <circle cx="70" cy="100" r="3" />
+      <circle cx="130" cy="100" r="3" />
+    </g>
+    
+    <!-- 极微小的交叉点焊盘 -->
+    <g fill="#00ff88">
+      <circle cx="25" cy="50" r="1.5" />
+      <circle cx="25" cy="150" r="1.5" />
+      <circle cx="175" cy="50" r="1.5" />
+      <circle cx="175" cy="150" r="1.5" />
+      <circle cx="50" cy="25" r="1.5" />
+      <circle cx="150" cy="25" r="1.5" />
+      <circle cx="50" cy="175" r="1.5" />
+      <circle cx="150" cy="175" r="1.5" />
+    </g>
+  </g>
+</svg>
