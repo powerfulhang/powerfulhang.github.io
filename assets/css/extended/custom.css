@@ -171,6 +171,8 @@ a {
     border: 1px solid var(--border);
     border-radius: 8px;
     overflow: hidden;
+    background: var(--si-code-bg) !important;
+    margin: 1.25rem 0;
 }
 
 .post-content .highlight::before {
@@ -194,13 +196,38 @@ a {
     border: none;
     border-radius: 0;
     margin: 0;
+    padding: 0;
+    line-height: 1.65;
     font-family: 'JetBrains Mono', 'Courier New', Courier, monospace !important;
     background: var(--si-code-bg) !important;
+}
+
+.post-content .highlight pre.chroma code {
+    display: block;
+    padding: 14px 0;
+    line-height: 1.65;
+    word-break: normal;
+}
+
+.post-content .highlight > .chroma,
+.post-content .highlight .lntable {
+    min-height: 2.75rem;
+}
+
+.post-content .highlight .lntable {
+    display: table;
+    width: 100%;
+    border-spacing: 0;
+}
+
+.post-content .highlight .lntd {
+    vertical-align: middle;
 }
 
 /* 行号列样式优化 */
 .post-content .lntd:first-child pre {
     background: rgba(0, 0, 0, 0.2);
+    min-width: 3rem;
 }
 
 .post-content .lntd:first-child code {
@@ -210,6 +237,14 @@ a {
 .post-content .lntable {
     width: 100%;
     border-spacing: 0;
+}
+
+.post-content .highlight .lnt,
+.post-content .highlight .ln,
+.post-content .highlight pre.chroma .line .cl {
+    padding-top: 0;
+    padding-bottom: 0;
+    line-height: 1.65;
 }
 
 code {
