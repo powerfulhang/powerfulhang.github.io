@@ -192,6 +192,7 @@ a {
     box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
 }
 
+/* 顶部渐变装饰线 */
 .post-content .highlight::before {
     content: "";
     position: absolute;
@@ -203,37 +204,92 @@ a {
     z-index: 1;
 }
 
-/* 移除旧的 pre::before 左侧色条 */
+/* 移除旧的 pre::before */
 .post-content pre::before {
     display: none;
 }
 
-/* 确保 pre 自身样式干净 */
-.post-content pre {
+/* ---- 核心修复：统一 padding 策略 ---- */
+/* 重置所有 pre/code 的 padding，防止层层叠加 */
+.post-content .highlight pre {
     border: none;
     border-radius: 0;
     margin: 0;
-    padding: 1.2em 1em;
+    padding: 0 !important;
     line-height: 1.7;
     font-family: 'JetBrains Mono', 'Courier New', Courier, monospace !important;
     color: var(--si-code-text);
     background: var(--si-code-panel-bg) !important;
 }
 
+.post-content .highlight code {
+    padding: 0 !important;
+    margin: 0 !important;
+    background: var(--si-code-panel-bg) !important;
+}
+
 .post-content .highlight > div,
-.post-content .highlight pre,
-.post-content .highlight code,
 .post-content .highlight table {
     background: var(--si-code-panel-bg) !important;
 }
 
-.post-content .highlight pre.chroma code {
-    display: block;
-    padding: 1.2em 0 1.2em 1.5rem;
+/* 覆盖 PaperMod 默认的 pre code grid 布局 */
+.post-content .highlight pre code,
+.md-content .highlight pre code {
+    display: block !important;
+    padding: 0 !important;
+    margin: 0 !important;
     line-height: 1.7;
     word-break: normal;
-    overflow-x: visible;
+    overflow-x: auto;
     white-space: pre;
+    background: var(--si-code-panel-bg) !important;
+}
+
+/* 唯一的 padding 来源：通过 lntd 单元格控制 */
+.post-content .highlight .lntable {
+    display: table;
+    width: 100%;
+    border-spacing: 0;
+    table-layout: auto;
+}
+
+.post-content .highlight .lntd {
+    vertical-align: top !important;
+    padding: 1em 0 !important;  /* 上下对称 padding — 唯一来源 */
+}
+
+/* 行号列 */
+.post-content .highlight .lntd:first-child {
+    width: 3.4rem;
+    padding: 1em 0 !important;
+    background: var(--si-code-gutter-bg) !important;
+    border-right: 1px solid rgba(148, 163, 184, 0.18) !important;
+}
+
+/* 行号文字 */
+.post-content .highlight .lnt,
+.post-content .highlight .ln {
+    display: block;
+    min-width: 2.1rem;
+    padding: 0 0.65rem;
+    color: var(--si-code-line) !important;
+    text-align: right;
+    line-height: 1.7;
+}
+
+/* 代码列内容 */
+.post-content .highlight .lntd:last-child code {
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+}
+
+/* 无行号的代码块（独立 pre > code） */
+.post-content .highlight > .chroma > code,
+.post-content .highlight > pre > code {
+    display: block !important;
+    padding: 1em 1.2em !important;
+    line-height: 1.7;
 }
 
 :root:not([data-theme="dark"]) .post-content .highlight pre,
@@ -245,74 +301,6 @@ a {
 :root:not([data-theme="dark"]) .post-content .highlight .lnt,
 :root:not([data-theme="dark"]) .post-content .highlight .ln {
     color: var(--si-code-line) !important;
-}
-
-.post-content .highlight > .chroma,
-.post-content .highlight .lntable {
-    min-height: 2.75rem;
-}
-
-.post-content .highlight .lntable {
-    display: table;
-    width: 100%;
-    border-spacing: 0;
-    table-layout: auto;
-}
-
-.post-content .highlight .lntd {
-    vertical-align: top !important;
-    padding: 0;
-}
-
-.post-content .highlight .lntd:first-child {
-    width: 3.4rem;
-    background: var(--si-code-gutter-bg) !important;
-    border-right: 1px solid rgba(148, 163, 184, 0.18) !important;
-}
-
-/* 行号列样式优化 */
-.post-content .lntd:first-child pre {
-    min-width: 3.4rem;
-    padding: 1.2em 0.8em;
-    margin: 0;
-    background: var(--si-code-gutter-bg) !important;
-}
-
-.post-content .lntd:first-child code {
-    color: var(--si-code-line);
-    display: block;
-    padding: 1.2em 0.5em 1.2em 0.8em;
-    text-align: right;
-}
-
-.post-content .lntable {
-    width: 100%;
-    border-spacing: 0;
-}
-
-.post-content .highlight .lnt,
-.post-content .highlight .ln,
-.post-content .highlight pre.chroma .line .cl {
-    padding-top: 0;
-    padding-bottom: 0;
-    line-height: 1.7;
-}
-
-.post-content .highlight .lnt,
-.post-content .highlight .ln {
-    display: block;
-    min-width: 2.1rem;
-    padding-inline: 0.65rem;
-    color: var(--si-code-line) !important;
-    text-align: right;
-}
-
-.post-content .highlight pre.chroma .line .cl {
-    padding-inline: 0 1.5rem;
-}
-
-.post-content .highlight .line {
-    min-height: 1.7em;
 }
 
 code {
@@ -401,7 +389,40 @@ code {
     opacity: 0.6;
 }
 
-/* --- 12. Mermaid 图表 --- */
+/* --- 12. 语言切换按钮 (紧邻主题切换) --- */
+.lang-toggle-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 0.4rem;
+    color: var(--content);
+    cursor: pointer;
+    transition: color 0.2s ease;
+    min-height: inherit;
+    text-decoration: none !important;
+    border: none !important;
+}
+
+.lang-toggle-btn:hover {
+    color: var(--si-primary);
+}
+
+.lang-toggle-btn svg {
+    opacity: 0.8;
+    transition: opacity 0.2s ease;
+}
+
+.lang-toggle-btn:hover svg {
+    opacity: 1;
+}
+
+/* 隐藏 PaperMod 默认的文字语言菜单（已替换为图标按钮） */
+.lang-menu,
+.logo-switches .nav-sep {
+    display: none !important;
+}
+
+/* --- 13. Mermaid 图表 --- */
 .mermaid {
     background: var(--entry);
     border: 1px solid var(--border);
