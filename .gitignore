@@ -23,3 +23,14 @@ venv/
 .vscode/
 .DS_Store
 Thumbs.db
+
+# 工作日志和计划文档（不需要提交）
+log/
+blog-plan.md
+
+# Claude Code / Codex 工作文件
+.claude/
+code_from_gemini/
+file_from_codex/
+claude-code-prompts-*.md
+*.log

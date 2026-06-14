@@ -213,7 +213,7 @@ a {
     border: none;
     border-radius: 0;
     margin: 0;
-    padding: 0;
+    padding: 1.2em 1em;
     line-height: 1.7;
     font-family: 'JetBrains Mono', 'Courier New', Courier, monospace !important;
     color: var(--si-code-text);
@@ -229,7 +229,7 @@ a {
 
 .post-content .highlight pre.chroma code {
     display: block;
-    padding: 18px 0 18px 1.5rem;
+    padding: 1.2em 0 1.2em 1.5rem;
     line-height: 1.7;
     word-break: normal;
     overflow-x: visible;
@@ -261,6 +261,7 @@ a {
 
 .post-content .highlight .lntd {
     vertical-align: top !important;
+    padding: 0;
 }
 
 .post-content .highlight .lntd:first-child {
@@ -272,13 +273,15 @@ a {
 /* 行号列样式优化 */
 .post-content .lntd:first-child pre {
     min-width: 3.4rem;
+    padding: 1.2em 0.8em;
+    margin: 0;
     background: var(--si-code-gutter-bg) !important;
 }
 
 .post-content .lntd:first-child code {
     color: var(--si-code-line);
     display: block;
-    padding: 18px 0;
+    padding: 1.2em 0.5em 1.2em 0.8em;
     text-align: right;
 }
 

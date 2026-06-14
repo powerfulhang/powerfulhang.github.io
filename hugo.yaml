@@ -1,7 +1,89 @@
 baseURL: "https://powerfulhang.github.io/"
-languageCode: zh-cn
 defaultContentLanguage: zh
-title: "SiliconBlog — 半导体 CAD 工程师的技术笔记"
+defaultContentLanguageInSubdir: false
+
+languages:
+  zh:
+    languageName: "中文"
+    languageCode: zh-CN
+    weight: 1
+    title: "SiliconBlog — 半导体 CAD 工程师的技术笔记"
+    params:
+      homeInfoParams:
+        Title: "欢迎来到 SiliconBlog"
+        Content: >
+          面向半导体 CAD 工程师的技术博客。
+          分享 EDA 工具、PDK 开发、DRC/LVS、Pcell 编程、
+          自动化脚本等实战经验。
+      description: "SiliconBlog — 面向半导体 CAD 工程师的技术博客，分享 EDA、SKILL 编程、PDK 开发、DRC/LVS 等实战经验"
+    menu:
+      main:
+        - identifier: posts
+          name: 文章
+          url: /posts/
+          weight: 10
+        - identifier: categories
+          name: 分类
+          url: /categories/
+          weight: 20
+        - identifier: tags
+          name: 标签
+          url: /tags/
+          weight: 30
+        - identifier: archives
+          name: 归档
+          url: /archives/
+          weight: 40
+        - identifier: search
+          name: 搜索
+          url: /search/
+          weight: 50
+        - identifier: about
+          name: 关于
+          url: /about/
+          weight: 60
+
+  en:
+    languageName: "EN"
+    languageCode: en
+    weight: 2
+    title: "SiliconBlog — Tech Notes of a Semiconductor CAD Engineer"
+    params:
+      homeInfoParams:
+        Title: "Welcome to SiliconBlog"
+        Content: >
+          A tech blog for semiconductor CAD engineers.
+          Sharing experience in EDA tools, PDK development,
+          DRC/LVS, Pcell programming, and automation scripts.
+      description: "SiliconBlog — A tech blog for semiconductor CAD engineers"
+    menu:
+      main:
+        - identifier: posts
+          name: Posts
+          url: /posts/
+          weight: 10
+        - identifier: categories
+          name: Categories
+          url: /categories/
+          weight: 20
+        - identifier: tags
+          name: Tags
+          url: /tags/
+          weight: 30
+        - identifier: archives
+          name: Archives
+          url: /archives/
+          weight: 40
+        - identifier: search
+          name: Search
+          url: /search/
+          weight: 50
+        - identifier: about
+          name: About
+          url: /about/
+          weight: 60
+
+# 全局配置
 theme: PaperMod
 paginate: 8
 
@@ -22,12 +104,11 @@ params:
   tocopen: false
   comments: false
   math: true
-  description: "SiliconBlog — 面向半导体 CAD 工程师的技术博客，分享 EDA、SKILL 编程、PDK 开发、DRC/LVS 等实战经验"
   images:
     - "/og-image.png"
 
   label:
-    icon: ""
+    icon: ""
     text: SiliconBlog
 
   logo:
@@ -36,18 +117,11 @@ params:
     width: 512
     height: 512
 
-  homeInfoParams:
-    Title: "欢迎来到 SiliconBlog"
-    Content: >
-      面向半导体 CAD 工程师的技术博客。
-      分享 EDA 工具、PDK 开发、DRC/LVS、Pcell 编程、
-      自动化脚本等实战经验。
-
   socialIcons:
     - name: github
       url: "https://github.com/powerfulhang"
     - name: email
-      url: "mailto:YOUR_EMAIL"
+      url: "mailto:hangshi1023@gmail.com"
 
   assets:
     favicon: "/favicon.ico"
@@ -64,45 +138,18 @@ params:
     minMatchCharLength: 0
     keys: ["title", "permalink", "summary", "content"]
 
-menu:
-  main:
-    - identifier: posts
-      name: 文章
-      url: /posts/
-      weight: 10
-    - identifier: categories
-      name: 分类
-      url: /categories/
-      weight: 20
-    - identifier: tags
-      name: 标签
-      url: /tags/
-      weight: 30
-    - identifier: archives
-      name: 归档
-      url: /archives/
-      weight: 40
-    - identifier: search
-      name: 搜索
-      url: /search/
-      weight: 50
-    - identifier: about
-      name: 关于
-      url: /about/
-      weight: 60
-
-outputs:
-  home:
-    - HTML
-    - RSS
-    - JSON
-
 enableRobotsTXT: true
 
 sitemap:
   changefreq: weekly
   filename: sitemap.xml
   priority: 0.5
+
+outputs:
+  home:
+    - HTML
+    - RSS
+    - JSON
 
 markup:
   highlight:
