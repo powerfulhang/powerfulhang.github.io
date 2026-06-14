@@ -26,6 +26,7 @@ Thumbs.db
 
 # 工作日志和计划文档（不需要提交）
 log/
+prompt/
 blog-plan.md
 
 # Claude Code / Codex 工作文件

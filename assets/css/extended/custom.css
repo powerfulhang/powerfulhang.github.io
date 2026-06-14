@@ -256,13 +256,13 @@ a {
 
 .post-content .highlight .lntd {
     vertical-align: top !important;
-    padding: 1em 0 !important;  /* 上下对称 padding — 唯一来源 */
+    padding: 1.5em 0 1em 0 !important;  /* 上方留足空间（含 2px 渐变线） */
 }
 
 /* 行号列 */
 .post-content .highlight .lntd:first-child {
     width: 3.4rem;
-    padding: 1em 0 !important;
+    padding: 1.5em 0 1em 0 !important;
     background: var(--si-code-gutter-bg) !important;
     border-right: 1px solid rgba(148, 163, 184, 0.18) !important;
 }
@@ -288,7 +288,7 @@ a {
 .post-content .highlight > .chroma > code,
 .post-content .highlight > pre > code {
     display: block !important;
-    padding: 1em 1.2em !important;
+    padding: 1.5em 1.2em 1em 1.2em !important;
     line-height: 1.7;
 }
 
