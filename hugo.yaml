@@ -21,6 +21,7 @@ params:
   showtoc: true
   tocopen: false
   comments: false
+  math: true
   description: "SiliconBlog — 面向半导体 CAD 工程师的技术博客，分享 EDA、SKILL 编程、PDK 开发、DRC/LVS 等实战经验"
   images:
     - "/og-image.png"
@@ -112,3 +113,13 @@ markup:
   goldmark:
     renderer:
       unsafe: true
+    extensions:
+      passthrough:
+        enable: true
+        delimiters:
+          block:
+            - - "$$"
+              - "$$"
+          inline:
+            - - "$"
+              - "$"

@@ -166,26 +166,50 @@ a {
 }
 
 /* --- 7. 代码区块 (CAD 工程师核心区) --- */
-.highlight pre, pre {
-    font-family: 'JetBrains Mono', 'Courier New', Courier, monospace !important;
-    background: var(--si-code-bg) !important;
-    border: 1px solid var(--border);
-    border-radius: 6px;
+.post-content .highlight {
     position: relative;
-    padding-left: 1.5em !important;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
 }
 
-/* 代码块左侧渐变边框 */
-.highlight pre::before, pre::before {
-    content: '';
+.post-content .highlight::before {
+    content: "";
     position: absolute;
     top: 0;
     left: 0;
-    bottom: 0;
-    width: 3px;
-    background: linear-gradient(to bottom, var(--si-primary), var(--si-secondary));
-    border-top-left-radius: 6px;
-    border-bottom-left-radius: 6px;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--si-primary), var(--si-secondary), var(--si-tertiary));
+    z-index: 1;
+}
+
+/* 移除旧的 pre::before 左侧色条 */
+.post-content pre::before {
+    display: none;
+}
+
+/* 确保 pre 自身样式干净 */
+.post-content pre {
+    border: none;
+    border-radius: 0;
+    margin: 0;
+    font-family: 'JetBrains Mono', 'Courier New', Courier, monospace !important;
+    background: var(--si-code-bg) !important;
+}
+
+/* 行号列样式优化 */
+.post-content .lntd:first-child pre {
+    background: rgba(0, 0, 0, 0.2);
+}
+
+.post-content .lntd:first-child code {
+    color: var(--secondary);
+}
+
+.post-content .lntable {
+    width: 100%;
+    border-spacing: 0;
 }
 
 code {
@@ -271,4 +295,15 @@ code {
     color: var(--si-primary);
     margin: 0 8px;
     opacity: 0.6;
+}
+
+/* --- 12. Mermaid 图表 --- */
+.mermaid {
+    background: var(--entry);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1.5em;
+    margin: 1em 0;
+    text-align: center;
+    overflow-x: auto;
 }

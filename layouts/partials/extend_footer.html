@@ -2,3 +2,22 @@
 <div class="silicon-slogan">
     Powered by Silicon & Code — 用代码驱动半导体设计
 </div>
+
+{{ if .Page.Store.Get "hasMermaid" }}
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+  mermaid.initialize({
+    startOnLoad: true,
+    theme: 'dark',
+    themeVariables: {
+      primaryColor: '#1e293b',
+      primaryTextColor: '#d1d5db',
+      primaryBorderColor: '#00ff88',
+      lineColor: '#00d4ff',
+      secondaryColor: '#111827',
+      tertiaryColor: '#0a0e17',
+      fontFamily: 'system-ui, sans-serif'
+    }
+  });
+</script>
+{{ end }}
