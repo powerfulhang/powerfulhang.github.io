@@ -14,6 +14,10 @@
     --si-text: #334155;
     --si-border: #e2e8f0;
     --si-code-bg: #f1f5f9;
+    --si-code-panel-bg: #f3f6f9;
+    --si-code-gutter-bg: #edf1f5;
+    --si-code-line: #9ca3af;
+    --si-code-text: #374151;
     --si-grid-color: rgba(5, 150, 105, 0.04);
     --si-glow-primary: rgba(5, 150, 105, 0.2);
 
@@ -29,6 +33,7 @@
     --border: var(--si-border);
 }
 
+:root[data-theme="dark"],
 .dark {
     /* 深色模式 (默认深空黑) */
     --si-bg: #0a0e17;
@@ -39,6 +44,10 @@
     --si-text: #d1d5db;
     --si-border: #1e293b;
     --si-code-bg: #0d1117;
+    --si-code-panel-bg: #171c24;
+    --si-code-gutter-bg: #121720;
+    --si-code-line: #6b7280;
+    --si-code-text: #d1d5db;
     --si-grid-color: rgba(0, 255, 136, 0.03);
     --si-glow-primary: rgba(0, 255, 136, 0.15);
 
@@ -171,8 +180,14 @@ a {
     border: 1px solid var(--border);
     border-radius: 8px;
     overflow: hidden;
-    background: var(--si-code-bg) !important;
-    margin: 1.25rem 0;
+    background: var(--si-code-panel-bg) !important;
+    margin: 1.35rem 0;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.45);
+}
+
+:root[data-theme="dark"] .post-content .highlight,
+.dark .post-content .highlight {
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
 }
 
 .post-content .highlight::before {
@@ -197,16 +212,26 @@ a {
     border-radius: 0;
     margin: 0;
     padding: 0;
-    line-height: 1.65;
+    line-height: 1.7;
     font-family: 'JetBrains Mono', 'Courier New', Courier, monospace !important;
-    background: var(--si-code-bg) !important;
+    color: var(--si-code-text);
+    background: var(--si-code-panel-bg) !important;
+}
+
+.post-content .highlight > div,
+.post-content .highlight pre,
+.post-content .highlight code,
+.post-content .highlight table {
+    background: var(--si-code-panel-bg) !important;
 }
 
 .post-content .highlight pre.chroma code {
     display: block;
-    padding: 14px 0;
-    line-height: 1.65;
+    padding: 18px 0 18px 1.5rem;
+    line-height: 1.7;
     word-break: normal;
+    overflow-x: visible;
+    white-space: pre;
 }
 
 .post-content .highlight > .chroma,
@@ -218,20 +243,30 @@ a {
     display: table;
     width: 100%;
     border-spacing: 0;
+    table-layout: auto;
 }
 
 .post-content .highlight .lntd {
-    vertical-align: middle;
+    vertical-align: top !important;
+}
+
+.post-content .highlight .lntd:first-child {
+    width: 3.4rem;
+    background: var(--si-code-gutter-bg) !important;
+    border-right: 1px solid rgba(148, 163, 184, 0.18) !important;
 }
 
 /* 行号列样式优化 */
 .post-content .lntd:first-child pre {
-    background: rgba(0, 0, 0, 0.2);
-    min-width: 3rem;
+    min-width: 3.4rem;
+    background: var(--si-code-gutter-bg) !important;
 }
 
 .post-content .lntd:first-child code {
-    color: var(--secondary);
+    color: var(--si-code-line);
+    display: block;
+    padding: 18px 0;
+    text-align: right;
 }
 
 .post-content .lntable {
@@ -244,7 +279,24 @@ a {
 .post-content .highlight pre.chroma .line .cl {
     padding-top: 0;
     padding-bottom: 0;
-    line-height: 1.65;
+    line-height: 1.7;
+}
+
+.post-content .highlight .lnt,
+.post-content .highlight .ln {
+    display: block;
+    min-width: 2.1rem;
+    padding-inline: 0.65rem;
+    color: var(--si-code-line) !important;
+    text-align: right;
+}
+
+.post-content .highlight pre.chroma .line .cl {
+    padding-inline: 0 1.5rem;
+}
+
+.post-content .highlight .line {
+    min-height: 1.7em;
 }
 
 code {
@@ -261,7 +313,7 @@ code {
     word-break: break-word;
 }
 /* 亮色模式下的行内代码底色调整 */
-:root:not(.dark) .post-content :not(pre) > code {
+:root:not([data-theme="dark"]) .post-content :not(pre) > code {
     background: rgba(5, 150, 105, 0.1) !important;
 }
 
