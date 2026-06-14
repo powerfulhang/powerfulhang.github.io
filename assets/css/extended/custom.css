@@ -8,18 +8,19 @@
     /* 亮色模式 (日间适合阅读的科技感) */
     --si-bg: #f8fafc;
     --si-card-bg: #ffffff;
-    --si-primary: #059669;    /* 主绿-加深以提高可读性 */
-    --si-secondary: #0284c7;  /* 次蓝-加深 */
-    --si-tertiary: #9333ea;   /* 硅晶紫-加深 */
+    --si-primary: #047857;    /* 主绿-柔和且保持可读性 */
+    --si-secondary: #0369a1;  /* 次蓝-加深 */
+    --si-tertiary: #7e22ce;   /* 硅晶紫-加深 */
     --si-text: #334155;
     --si-border: #e2e8f0;
     --si-code-bg: #f1f5f9;
-    --si-code-panel-bg: #f3f6f9;
-    --si-code-gutter-bg: #edf1f5;
-    --si-code-line: #9ca3af;
-    --si-code-text: #374151;
-    --si-grid-color: rgba(5, 150, 105, 0.04);
-    --si-glow-primary: rgba(5, 150, 105, 0.2);
+    --si-code-panel-bg: #f6f8fb;
+    --si-code-gutter-bg: #eef2f7;
+    --si-code-line: #64748b;
+    --si-code-text: #334155;
+    --si-code-muted: #64748b;
+    --si-grid-color: rgba(4, 120, 87, 0.035);
+    --si-glow-primary: rgba(4, 120, 87, 0.16);
 
     /* 覆盖 PaperMod 基础变量 */
     --theme: var(--si-bg);
@@ -38,9 +39,9 @@
     /* 深色模式 (默认深空黑) */
     --si-bg: #0a0e17;
     --si-card-bg: #111827;
-    --si-primary: #00ff88;    /* 电路板绿 */
-    --si-secondary: #00d4ff;  /* 芯片蓝 */
-    --si-tertiary: #a855f7;   /* 硅晶紫 */
+    --si-primary: #34d399;    /* 柔和电路绿 */
+    --si-secondary: #38bdf8;  /* 柔和芯片蓝 */
+    --si-tertiary: #a78bfa;   /* 柔和硅晶紫 */
     --si-text: #d1d5db;
     --si-border: #1e293b;
     --si-code-bg: #0d1117;
@@ -48,8 +49,9 @@
     --si-code-gutter-bg: #121720;
     --si-code-line: #6b7280;
     --si-code-text: #d1d5db;
-    --si-grid-color: rgba(0, 255, 136, 0.03);
-    --si-glow-primary: rgba(0, 255, 136, 0.15);
+    --si-code-muted: #9ca3af;
+    --si-grid-color: rgba(52, 211, 153, 0.025);
+    --si-glow-primary: rgba(52, 211, 153, 0.12);
 
     /* 覆盖 PaperMod 基础变量 */
     --theme: var(--si-bg);
@@ -83,7 +85,7 @@ body {
 
 /* --- 3. 全局高亮与滚动条 --- */
 ::selection {
-    background: rgba(0, 255, 136, 0.2);
+    background: rgba(52, 211, 153, 0.2);
     color: inherit;
 }
 
@@ -197,7 +199,7 @@ a {
     left: 0;
     right: 0;
     height: 2px;
-    background: linear-gradient(90deg, var(--si-primary), var(--si-secondary), var(--si-tertiary));
+    background: linear-gradient(90deg, rgba(52, 211, 153, 0.75), rgba(56, 189, 248, 0.7), rgba(167, 139, 250, 0.72));
     z-index: 1;
 }
 
@@ -232,6 +234,17 @@ a {
     word-break: normal;
     overflow-x: visible;
     white-space: pre;
+}
+
+:root:not([data-theme="dark"]) .post-content .highlight pre,
+:root:not([data-theme="dark"]) .post-content .highlight code,
+:root:not([data-theme="dark"]) .post-content .highlight span[style] {
+    color: var(--si-code-text) !important;
+}
+
+:root:not([data-theme="dark"]) .post-content .highlight .lnt,
+:root:not([data-theme="dark"]) .post-content .highlight .ln {
+    color: var(--si-code-line) !important;
 }
 
 .post-content .highlight > .chroma,
@@ -306,7 +319,7 @@ code {
 /* 行内代码 */
 .post-content :not(pre) > code {
     color: var(--si-primary);
-    background: rgba(0, 255, 136, 0.1) !important;
+    background: rgba(52, 211, 153, 0.12) !important;
     padding: 0.2em 0.4em;
     border-radius: 4px;
     font-size: 0.9em;
@@ -314,7 +327,8 @@ code {
 }
 /* 亮色模式下的行内代码底色调整 */
 :root:not([data-theme="dark"]) .post-content :not(pre) > code {
-    background: rgba(5, 150, 105, 0.1) !important;
+    color: var(--si-primary);
+    background: rgba(4, 120, 87, 0.11) !important;
 }
 
 /* --- 8. 标签 Tags (胶囊设计) --- */
