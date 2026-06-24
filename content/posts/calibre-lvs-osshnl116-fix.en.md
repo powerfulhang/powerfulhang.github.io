@@ -47,16 +47,6 @@ OSSHNL-116 fires when **none** of the views in the View List exist on a particul
 
 The mismatch → netlister cannot descend → netlist generation aborts → Calibre LVS cannot proceed.
 
-### Why `CDS_Netlisting_Mode=Analog` Does Not Help
-
-A commonly suggested fix online is:
-
-```bash
-export CDS_Netlisting_Mode=Analog
-```
-
-This environment variable controls how CDF parameters are resolved during netlisting (analog vs. digital mode), but it does **not** change the View List or Stop List. If the fundamental view mismatch exists, setting this variable has no effect.
-
 ## 3. Solution: Configure View List and Stop List Correctly
 
 ### Step 1 — Identify Available Views on PDK Cells
@@ -88,27 +78,7 @@ In the Calibre Netlist Export Setup dialog:
 
 By adding `auCdl` to both lists (and placing it first), the netlister will now find the `auCdl` view on PDK primitives, treat them as leaf cells, and successfully generate the netlist.
 
-### Step 4 — Handle Greyed-Out Fields (Template Lock)
-
-If the View List and Stop List fields are greyed out and non-editable, they are locked by the **Template File** (e.g., `cdl_subckt`). Two workarounds:
-
-**Option A — Edit the template file directly:**
-
-```bash
-# Find the template
-find $MGC_HOME -name "cdl_subckt" -type f 2>/dev/null
-
-# Copy and edit
-cp /path/to/cdl_subckt ~/my_cdl_subckt
-```
-
-Edit `viewList` and `stopList` in the copied file, then point the Template File field to your modified version and click **Load**.
-
-**Option B — Clear the template:**
-
-Clear the Template File field to unlock all settings, make your changes, then click **Save** to create a custom template for future use.
-
-### Step 5 — Re-run LVS
+### Step 4 — Re-run LVS
 
 Return to the Calibre Interactive window and click **Run LVS**. The netlist export should now succeed.
 
@@ -129,9 +99,7 @@ This works but requires re-exporting every time the schematic changes.
 | Symptom | Cause | Fix |
 |---|---|---|
 | OSSHNL-116 on PDK cells | View List missing `auCdl` | Add `auCdl` to View List and Stop List |
-| Fields greyed out | Template file locking | Edit template or clear it |
 | Setup dialog not found | Looking inside Calibre Interactive | Access from Virtuoso: Calibre → Setup → Netlist Export... |
-| `CDS_Netlisting_Mode` ineffective | Wrong diagnosis | This env var does not affect view list |
 
 ---
 

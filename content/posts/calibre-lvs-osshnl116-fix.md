@@ -47,16 +47,6 @@ OSSHNL-116 发生在 View List 中列出的**所有 view 都不存在**于某个
 
 View 名称不匹配 → 网表导出器无法下降 → 网表生成中止 → Calibre LVS 无法继续。
 
-### 为什么 `CDS_Netlisting_Mode=Analog` 无效
-
-网上常见的一个建议是在启动 Virtuoso 前设置：
-
-```bash
-export CDS_Netlisting_Mode=Analog
-```
-
-该环境变量控制的是网表导出时 CDF 参数的解析模式（模拟 vs. 数字），**并不会改变 View List 或 Stop List**。如果 view 名称本身就不匹配，设置这个变量没有任何效果。
-
 ## 3. 解决方案：正确配置 View List 和 Stop List
 
 ### 第一步：确认 PDK Cell 实际有哪些 View
@@ -88,27 +78,7 @@ ddGetObj("55FSI_3p3" "dgpfet_33")~>views~>name
 
 将 `auCdl` 加入两个列表（并放在最前面），网表导出器就能在 PDK 原语 cell 上找到 `auCdl` view，将其视为叶子 cell，成功生成网表。
 
-### 第四步：处理灰色不可编辑字段（Template 锁定）
-
-如果 View List 和 Stop List 字段显示为灰色、无法编辑，说明它们被 **Template File**（如 `cdl_subckt`）锁定。两种处理方式：
-
-**方式 A — 直接编辑 Template 文件：**
-
-```bash
-# 找到 template 文件
-find $MGC_HOME -name "cdl_subckt" -type f 2>/dev/null
-
-# 复制一份到项目目录
-cp /path/to/cdl_subckt ~/my_cdl_subckt
-```
-
-编辑副本中的 `viewList` 和 `stopList` 字段，然后在 Template File 栏中指向修改后的文件，点击 **Load** 加载。
-
-**方式 B — 清除 Template：**
-
-清空 Template File 栏，所有设置字段恢复为可编辑状态，手动修改后点击 **Save** 保存为自定义 template 供后续使用。
-
-### 第五步：重新运行 LVS
+### 第四步：重新运行 LVS
 
 回到 Calibre Interactive 窗口，点击 **Run LVS**，网表导出应能成功完成。
 
@@ -129,9 +99,7 @@ cp /path/to/cdl_subckt ~/my_cdl_subckt
 | 现象 | 原因 | 修复方法 |
 |---|---|---|
 | PDK cell 报 OSSHNL-116 | View List 缺少 `auCdl` | 在 View List 和 Stop List 中添加 `auCdl` |
-| 设置字段灰色不可编辑 | Template 文件锁定 | 编辑 template 或清除 template |
 | 找不到设置对话框 | 在 Calibre Interactive 内查找 | 从 Virtuoso 进入：Calibre → Setup → Netlist Export... |
-| `CDS_Netlisting_Mode` 设置无效 | 诊断方向错误 | 该环境变量不影响 view list |
 
 ---
 
