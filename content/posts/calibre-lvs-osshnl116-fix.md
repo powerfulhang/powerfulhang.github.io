@@ -1,6 +1,6 @@
 ---
 title: "解决 Calibre LVS 报错 OSSHNL-116：CDL View List 配置指南"
-date: 2026-06-24T10:30:00+08:00
+date: 2026-06-24T10:20:00+08:00
 draft: false
 author: "SiliconBlog"
 tags: ["Calibre", "LVS", "OSSHNL-116", "auCdl", "Virtuoso", "PDK", "EDA"]

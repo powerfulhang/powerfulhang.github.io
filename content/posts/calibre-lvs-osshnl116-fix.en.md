@@ -1,6 +1,6 @@
 ---
 title: "Fixing Calibre LVS OSSHNL-116: A CDL View List Mismatch Guide"
-date: 2026-06-24T10:30:00+08:00
+date: 2026-06-24T10:20:00+08:00
 draft: false
 author: "SiliconBlog"
 tags: ["Calibre", "LVS", "OSSHNL-116", "auCdl", "Virtuoso", "PDK", "EDA"]
